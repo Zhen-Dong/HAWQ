@@ -1,3 +1,5 @@
+![Block](imgs/resnet18_TC.png)
+
 # HAWQ: Hessian AWare Quantization
 
 HAWQ is an advanced quantization library written for PyTorch. HAWQ enables low-precision and mixed-precision uniform quantization, with direct hardware implementation through TVM.
