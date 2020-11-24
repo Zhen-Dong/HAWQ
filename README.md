@@ -1,8 +1,6 @@
-# HAWQ: Systematic Quantization Library
+# HAWQ: Hessian AWare Quantization
 
-HAWQ is a library to perform systematic quantization on PyTorch. 
-Based on our TVM backend, HAWQ can enable inference acceleration for neural network models with ultra-low bit quantization.
-HAWQ is flexible and supports mixed-precision quantization.
+HAWQ is an advanced quantization library written for PyTorch. HAWQ enables low-precision and mixed-precision uniform quantization, with direct hardware implementation through TVM.
 
 ## Installation
 
