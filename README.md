@@ -4,6 +4,11 @@
 
 HAWQ is an advanced quantization library written for PyTorch. HAWQ enables low-precision and mixed-precision uniform quantization, with direct hardware implementation through TVM.
 
+For more details please see:
+
+- [HAWQ-V3 lightning talk in TVM Conference](https://www.youtube.com/watch?v=VRiujqKU254)
+- [HAWQ-V2 presentation in NeurIPS'20](https://neurips.cc/virtual/2020/public/poster_d77c703536718b95308130ff2e5cf9ee.html)
+
 ## Installation
 
 * [PyTorch](http://pytorch.org/) version >= 1.4.0
@@ -12,6 +17,7 @@ HAWQ is an advanced quantization library written for PyTorch. HAWQ enables low-p
 * **To install HAWQ** and develop locally:
 ```bash
 git clone https://github.com/zhendong/HAWQ
+pip install -r requirements.txt
 ```
 
 ## Quick Start
