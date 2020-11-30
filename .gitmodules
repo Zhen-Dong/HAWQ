@@ -1,0 +1,4 @@
+[submodule "tvm"]
+	path = tvm
+	url = https://github.com/zachzzc/incubator-tvm.git
+	branch = int4_direct_HWNC
