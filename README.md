@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="imgs/resnet18_TC.png" width="860">
+  <img src="imgs/resnet18_TC.png" width="840">
   <br />
   <br />
   </p>
@@ -20,7 +20,7 @@ For more details please see:
 * For training new models, you'll also need NVIDIA GPUs and [NCCL](https://github.com/NVIDIA/nccl)
 * **To install HAWQ** and develop locally:
 ```bash
-git clone https://github.com/zhendong/HAWQ.git
+git clone https://github.com/Zhen-Dong/HAWQ.git
 cd HAWQ
 pip install -r requirements.txt
 ```
