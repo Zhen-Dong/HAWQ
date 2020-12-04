@@ -1,5 +1,5 @@
-# Instructions To Run The iPython Notebook
-
+# Instructions on Hardware Deployment
+In this README, we show the steps to run quantized models on NVIDIA T4 GPU for inference speed-up.
 ## Google Cloud Environment Set Up
 
 * In the Google Cloud console, click on **Go to Compute Engine**.
@@ -9,12 +9,12 @@
 * Click on **CPU platform and GPU** for more options.
 * For CPU platform, select **Intel Skylake or later**.
 * Click on **Add GPU** and select **NVIDIA Tesla T4**
-* For the Boot disk, under Public images, select **Deep Learning on Linux** for Operating system, Deep Learning Image: **PyTorch 1.4.0 and fastai m49** for Version, **Standard persistent disk** for Boot disk type, and a reasonable disk size (e.g. 128GB).
+* For the Boot disk, under Public images, select **Deep Learning on Linux** for Operating system, Deep Learning Image: **PyTorch 1.4.0 and fastai m49** for Version, **Standard persistent disk** for Boot disk type, and a reasonable disk size (e.g. 256GB).
 * Under Identity and API access, under Access scopes, select **Allow full access to all Cloud APIs**.
 * Under Firewall, Check both the **Allow HTTP traffic** and the **Allow HTTPS traffic** boxes.
-* When you first SSH into the VM, if asked to install Nvidia drivers, say yes.
+* When you first SSH into the Virtual Machine (VM), if asked to install Nvidia drivers, type yes.
 
-## Installing zachzzc's TVM
+## Install zachzzc's TVM
 
 A lot of these steps are taken from the TVM [Install from Source](https://tvm.apache.org/docs/install/from_source.html) page.
 
@@ -67,12 +67,12 @@ Install Python dependencies.
 * For the auto-tuning module: `pip3 install --user tornado psutil xgboost`
 
 
-## Instructions to run TVM inference and debug it
+## Run TVM inference
 1. Create a new directory named "data" under tvm_test.
 
-2. Download the reference pytorch data from https://drive.google.com/drive/folders/1gkhqaeklP0n8QS_72q0YOrbbEw2OF3Sz?usp=sharing into the newly created folder. The files can each be downloaded directly from the Google Drive into the Google Cloud VM using `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
-* Right click on the file to download and then choose **Share**.
-* Make sure the share options are set to **Anyone on the internet with this link can view**. Press **Copy link** and paste it somewhere to view.
+2. Conduct quantization-aware training (QAT) to get quantized model and put it in the "data" directory. \
+Or download the quantized pytorch model from https://drive.google.com/drive/folders/1gkhqaeklP0n8QS_72q0YOrbbEw2OF3Sz?usp=sharing into the newly created folder. The files can each be downloaded directly from the Google Drive into the Google Cloud VM using `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
+* Press **Copy link** and paste it somewhere to view.
 * Run the following command, replacing FILEID with the id in the shared link and FILENAME with the name of the file.
 ~~~~
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
@@ -94,7 +94,7 @@ For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0X
     python test_resnet_inference.py --model-dir ./data
 ~~~~
 
-* Debug mode: Run the inference until the specific unit. The result will be compared with the Pytorch checkpoint and save under "./data/tvm_result". The debug unit can be stage1_unit1_input, stage1_unit1_output ... fc_input, fc_output
+* Debug mode: Run the inference until the specific unit. The result will be compared with the PyTorch checkpoint and saved under "./data/tvm_result". The debug unit can be set to stage1_unit1_input, stage1_unit1_output ... fc_input, fc_output
 ~~~~
     python test_resnet_inference.py --model-dir ./data --debug-unit "stage2_unit2_input"
 ~~~~
@@ -104,8 +104,8 @@ For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0X
     python test_resnet_accuracy_imagenet.py --model-dir ./data --val-dir PATH_TO_IMAGENET_VALIDATION_DATASET
 ~~~~
 
-6. Measure inference time (with uniform int4/int8 or custom bit config in bit_config.py)
-- With uniform int4
+6. Measure inference time (with uniform int4/int8 or custom mixed-precision bit config in bit_config.py)
+- With uniform int4 quantized model
 ~~~~
     python test_resnet_inference_time.py --num-layers 50 --batch-size 8 --data-layout "HWNC" --model-type "int4"
 ~~~~

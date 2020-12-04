@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="imgs/resnet18_TC.png" width="150">
+  <img src="imgs/resnet18_TC.png" width="860">
   <br />
   <br />
   </p>
@@ -25,7 +25,7 @@ cd HAWQ
 pip install -r requirements.txt
 ```
 
-## Quick Start
+## Getting Started
 ### Quantization-Aware Training
 An example to run uniform 8-bit quantization for resnet50 on ImageNet. 
 ```
