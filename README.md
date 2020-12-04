@@ -1,4 +1,8 @@
-![Block](imgs/resnet18_TC.png)
+<p align="center">
+  <img src="imgs/resnet18_TC.png" width="150">
+  <br />
+  <br />
+  </p>
 
 # HAWQ: Hessian AWare Quantization
 
@@ -13,10 +17,11 @@ For more details please see:
 
 * [PyTorch](http://pytorch.org/) version >= 1.4.0
 * Python version >= 3.6
-* For training new models, you'll also need an NVIDIA GPU and [NCCL](https://github.com/NVIDIA/nccl)
+* For training new models, you'll also need NVIDIA GPUs and [NCCL](https://github.com/NVIDIA/nccl)
 * **To install HAWQ** and develop locally:
 ```bash
-git clone https://github.com/zhendong/HAWQ
+git clone https://github.com/zhendong/HAWQ.git
+cd HAWQ
 pip install -r requirements.txt
 ```
 
@@ -24,10 +29,12 @@ pip install -r requirements.txt
 ### Quantization-Aware Training
 An example to run uniform 8-bit quantization for resnet50 on ImageNet. 
 ```
-export CUDA_VISIBLE_DEVICES=0; 
+export CUDA_VISIBLE_DEVICES=0
 python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fold-BN 1 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
 ```
 
+### Inference Acceleration
+* [Instructions on Hardware Implementation through TVM](tvm_benchmark/README.md)
 
 ## Related Works
   - [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)
@@ -37,4 +44,4 @@ python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --dat
 
 ## License
 
-HAWQ is released under the [Apache 2.0 license](LICENSE).
+HAWQ is released under the [MIT license](LICENSE).
