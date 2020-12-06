@@ -82,13 +82,17 @@ For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0X
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0" -O featuremaps.pth.tar && rm -rf /tmp/cookies.txt
 ~~~~
 
-3. Convert the Pytorch parameters into TVM format by running
+3. Convert the Pytorch parameters into TVM format by running. Model directory contains the checkpoint .pth.tar file.
+* Without featuremaps, only weights and biases
 ~~~~
-    python hawq_utils.py --model-dir ./data
+    python hawq_utils_resnet50.py --model-dir ./data
 ~~~~
-* It should give a key error KeyError: 'module.features.stage3.unit1.block_input_featuremap'. It is fine because for now we only save the checkpoints up to stage2.
+* With featuremap
+~~~~
+    python hawq_utils_resnet50.py --model-dir ./data --with-featuremap
+~~~~
 
-4. There are two modes to run the TVM inference
+4. There are two modes to run the single image TVM inference. To run debug mode, we need to store the image and featuremaps.
 * Normal mode: Run the inference and make predictions of the given image
 ~~~~
     python test_resnet_inference.py --model-dir ./data
