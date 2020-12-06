@@ -13,7 +13,7 @@ import numpy as np
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
-import hawq_utils
+import hawq_utils_resnet50
 sys.path.append('..')
 import mixed_precision_models.quantized_resnet_v1 as quantized_resnet_v1
 from mixed_precision_models.layers import QConfig, QuantizeContext
@@ -29,9 +29,12 @@ def get_params(params_dir, model_type):
         print("Model type not supported")
         sys.exit(1)
 
+    num_stages = 4
+    units = [3, 4, 6, 3]
+
     weights = np.load(os.path.join(params_dir, "weights.npy"), allow_pickle=True)[()]
     bias = np.load(os.path.join(params_dir, "bias.npy"), allow_pickle=True)[()]
-    hawq_utils.load_qconfig(data_dtype, kernel_dtype, file_name=os.path.join(params_dir, "quantized_checkpoint.pth.tar"))
+    hawq_utils_resnet50.load_qconfig(data_dtype, kernel_dtype, num_stages=num_stages, units=units, file_name=os.path.join(params_dir, "quantized_checkpoint.pth.tar"))
 
     params = {**weights, **bias}
     # params = {**weights}
@@ -51,7 +54,7 @@ def get_model(num_layers, model_type, batch_size):
                                                     data_layout=data_layout,
                                                     kernel_layout=kernel_layout,
                                                     with_bn=False,
-                                                    with_softmax=True)
+                                                    with_softmax=False)
 
     return func
 
@@ -151,7 +154,7 @@ if __name__ == '__main__':
     params_dir = args.model_dir
 
     num_layers = 50
-    model_type = "int4"
+    model_type = "int8"
 
     log_filename = "./logs/resnet%d_%s_%s_batch_%d.log" % (num_layers, "NHWC", model_type, batch_size)
     if not os.path.exists(log_filename):

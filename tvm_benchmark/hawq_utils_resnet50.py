@@ -126,6 +126,8 @@ def save_weights(save_path, kernel_dtype, num_stages, units):
 
         if kernel_dtype == 'int4' and key not in int8_ops_list:
             tensor_np = pack_int32_to_int4(tensor_np)
+        else:
+            tensor_np = tensor_np.astype('int8')
 
         params[key] = tensor_np
 
@@ -422,16 +424,6 @@ def save_unit_input(model_dir, save_path, num_stages, units):
     # print(golden_result.shape)
 
 if __name__ == "__main__":
-
-    dtype = 'int4'
-
-    if dtype == 'int4':
-        data_dtype = 'uint4'
-        kernel_dtype = 'int4'
-    else:
-        data_dtype = 'int8'
-        kernel_dtype = 'int8'
-
     parser = argparse.ArgumentParser(description='HWAQ-V3 utils',
                                             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
@@ -444,8 +436,14 @@ if __name__ == "__main__":
     parser.add_argument('--cifar10', action='store_true',
                         help='Model is cifar10')
 
+    parser.add_argument('--with-featuremap', action='store_true',
+                        help='Transform the featuremap')
+
     parser.add_argument('--onlyfeaturemap', action='store_true',
                         help='Only transform the featuremap')
+
+    parser.add_argument('--dtype', default='int8',
+                        help='Only support uniform data type here (int8, int4)')
 
     args = parser.parse_args()
 
@@ -454,9 +452,17 @@ if __name__ == "__main__":
     else:
         save_path = args.save_dir
 
+    if args.dtype == 'int4':
+        data_dtype = 'uint4'
+        kernel_dtype = 'int4'
+    elif args.dtype =='int8':
+        data_dtype = 'int8'
+        kernel_dtype = 'int8'
+    else:
+        sys.exit("dtype not supported")
+
     model_dir = args.model_dir
     file_name = os.path.join(model_dir, "quantized_checkpoint.pth.tar")
-    featuremap_name = os.path.join(model_dir, "featuremaps.pth.tar")
     input_file_name = "input.pth.tar"
 
     if save_path != model_dir:
@@ -477,16 +483,19 @@ if __name__ == "__main__":
     weight_integer = model['weight_integer']
     scaling_factors = {**model['convbn_scaling_factor'], **model['fc_scaling_factor'], **model['act_scaling_factor']}
     scaled_bias = {**model['bias_integer']}
-    feature_map = torch.load(featuremap_name)['featuremap']
 
-    for key in feature_map.keys():
-        print(key)
 
-    if args.onlyfeaturemap:
+    if args.onlyfeaturemap or args.with_featuremap:
+        save_input(model_dir, save_path)
+        featuremap_name = os.path.join(model_dir, "featuremaps.pth.tar")
+        feature_map = torch.load(featuremap_name)['featuremap']
+
+        for key in feature_map.keys():
+            print(key)
+
         save_unit_input(model_dir, save_path, num_stages, units)
-    else:
+
+    if not args.onlyfeaturemap:
         save_weights(save_path, kernel_dtype, num_stages, units)
         load_qconfig(data_dtype, kernel_dtype, num_stages, units, model_load=True, scaling_factors=scaling_factors)
         save_bias(save_path, num_stages, units)
-        save_input(model_dir, save_path)
-        save_unit_input(model_dir, save_path, num_stages, units)
