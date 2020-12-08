@@ -36,6 +36,26 @@ python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --dat
 ### Inference Acceleration
 * [Instructions on Hardware Implementation through TVM](tvm_benchmark/README.md)
 
+## Experimental Results
+**Table I and Table II in [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)**
+
+Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
+---|---|---|---|---|---
+`ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | [model_baseline]()
+`ResNet18` | W8A8            | 11.1 | 116  | 71.56 | [model_uniform8]()
+`ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | [model_mp]()
+`ResNet18` | W4A4            | 5.8  | 34   | 68.45 | [model_uniform4]()
+
+Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
+---|---|---|---|---|---
+`ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | [model_baseline](https://drive.google.com/drive/folders/19xmwcVJzJANGagCESZAcwAJbIhRBJy4J?usp=sharing)
+`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | [model_uniform8]()
+`ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | [model_mp]()
+`ResNet50` | W4A4            | 13.1 | 67   | 74.24 | [model_uniform4]()
+
+More results and models are available in the [model zoo](model_zoo.md).  \
+To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md).
+
 ## Related Works
   - [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)
   - [HAWQ-V2: Hessian Aware trace-Weighted Quantization of Neural Networks (NeurIPS 2020)](https://arxiv.org/abs/1911.03852)
