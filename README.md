@@ -39,17 +39,19 @@ python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --dat
 ## Experimental Results
 **Table I and Table II in [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)**
 
+## ResNet18 on ImageNet 
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
-`ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | [resnet18_baseline](https://drive.google.com/drive/folders/1C2EpDnRkCFwrH5drwLQRDmlsiQNKN9Nc?usp=sharing)
-`ResNet18` | W8A8            | 11.1 | 116  | 71.56 | [resnet18_uniform8](https://drive.google.com/drive/folders/1BbJfgkzGVyPNlXrAO9TbZrVQMqFt99JM?usp=sharing)
+`ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
+`ResNet18` | W8A8            | 11.1 | 116  | 71.56 | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
 `ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | [resnet18_mp]()
 `ResNet18` | W4A4            | 5.8  | 34   | 68.45 | [resnet18_uniform4]()
 
+## ResNet50 on ImageNet
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
-`ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | [resnet50_baseline](https://drive.google.com/drive/folders/1C-R8gM2HF8sKi6MPJibopeb8JGklcVUW?usp=sharing)
-`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | [resnet50_uniform8](https://drive.google.com/drive/folders/19xmwcVJzJANGagCESZAcwAJbIhRBJy4J?usp=sharing)
+`ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
+`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
 `ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | [resnet50_mp]()
 `ResNet50` | W4A4            | 13.1 | 67   | 74.24 | [resnet50_uniform4]()
 

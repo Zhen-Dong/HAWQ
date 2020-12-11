@@ -71,18 +71,18 @@ Install Python dependencies.
 1. Create a new directory named "data" under tvm_test.
 
 2. Conduct quantization-aware training (QAT) to get quantized model and put it in the "data" directory. \
-Or download the quantized pytorch model from https://drive.google.com/drive/folders/1gkhqaeklP0n8QS_72q0YOrbbEw2OF3Sz?usp=sharing into the newly created folder. The files can each be downloaded directly from the Google Drive into the Google Cloud VM using `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
+Or download the quantized PyTorch model from https://drive.google.com/drive/folders/1gkhqaeklP0n8QS_72q0YOrbbEw2OF3Sz?usp=sharing into the newly created folder. The files can each be downloaded directly from the Google Drive into the Google Cloud VM using `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
 * Press **Copy link** and paste it somewhere to view.
 * Run the following command, replacing FILEID with the id in the shared link and FILENAME with the name of the file.
 ~~~~
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
 ~~~~
-For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0/view?usp=sharing, then 1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0 is the FILEID, featuremaps.pth.tar is the FILENAME, and the command to download the file would be
+For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0/view?usp=sharing, then 1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0 is the FILEID, featuremaps.pth.tar is the FILENAME, and the command to download the file would be:
 ~~~~
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0" -O featuremaps.pth.tar && rm -rf /tmp/cookies.txt
 ~~~~
 
-3. Convert the Pytorch parameters into TVM format by running. Model directory contains the checkpoint .pth.tar file.
+3. Convert the PyTorch parameters into TVM format by running the following command. Model directory contains the checkpoint.pth.tar file.
 * Without featuremaps, only weights and biases
 ~~~~
     python hawq_utils_resnet50.py --model-dir ./data
