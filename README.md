@@ -40,7 +40,7 @@ The commands for other quantization schemes and for other networks are shown in 
 ## Experimental Results
 **Table I and Table II in [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)**
 
-## ResNet18 on ImageNet 
+### ResNet18 on ImageNet 
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
 `ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
@@ -48,7 +48,7 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 `ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
 `ResNet18` | W4A4            | 5.8  | 34   | 68.45 | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
 
-## ResNet50 on ImageNet
+### ResNet50 on ImageNet
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
 `ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
