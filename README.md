@@ -30,8 +30,9 @@ pip install -r requirements.txt
 An example to run uniform 8-bit quantization for resnet50 on ImageNet. 
 ```
 export CUDA_VISIBLE_DEVICES=0
-python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fold-BN 1 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
+python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fold-BN 1 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
 ```
+The commands for other quantization schemes and for other networks are shown in the [model zoo](model_zoo.md).
 
 ### Inference Acceleration
 * [Instructions on Hardware Implementation through TVM](tvm_benchmark/README.md)
@@ -44,18 +45,18 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
 `ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
 `ResNet18` | W8A8            | 11.1 | 116  | 71.56 | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
-`ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | [resnet18_mp]()
-`ResNet18` | W4A4            | 5.8  | 34   | 68.45 | [resnet18_uniform4]()
+`ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
+`ResNet18` | W4A4            | 5.8  | 34   | 68.45 | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
 
 ## ResNet50 on ImageNet
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
 `ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
 `ResNet50` | W8A8            | 24.5 | 247  | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
-`ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | [resnet50_mp]()
-`ResNet50` | W4A4            | 13.1 | 67   | 74.24 | [resnet50_uniform4]()
+`ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
+`ResNet50` | W4A4            | 13.1 | 67   | 74.24 | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
-More results and models are available in the [model zoo](model_zoo.md).  \
+More results for different quantization schemes and different models (also the corresponding commands) are available in the [model zoo](model_zoo.md).  \
 To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md).
 
 ## Related Works
