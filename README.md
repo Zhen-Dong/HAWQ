@@ -30,7 +30,7 @@ pip install -r requirements.txt
 An example to run uniform 8-bit quantization for resnet50 on ImageNet. 
 ```
 export CUDA_VISIBLE_DEVICES=0
-python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fold-BN 1 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
+python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
 ```
 The commands for other quantization schemes and for other networks are shown in the [model zoo](model_zoo.md).
 

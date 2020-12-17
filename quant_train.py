@@ -93,18 +93,15 @@ parser.add_argument('--data-percentage',
                     type=float,
                     default=1,
                     help='data percentage of training data')
-parser.add_argument('--fold-BN-iter',
-                    type=int,
-                    default=-1,
-                    help='at which iteration to start BN folding')
 parser.add_argument('--fix-BN',
                     type=bool,
                     default=False,
-                    help='whether to fix BN statistics during training')
+                    help='whether to fix BN statistics and fold BN during training')
 parser.add_argument('--fix-BN-threshold',
                     type=int,
                     default=None,
-                    help='when to start training with folded BN')
+                    help='when to start training with fixed and folded BN,'
+                         'after the threshold iteration, the original fix-BN will be overwritten to be True')
 parser.add_argument('--checkpoint-iter',
                     type=int,
                     default=-1,
