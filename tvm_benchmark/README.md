@@ -71,49 +71,49 @@ Install Python dependencies.
 1. Create a new directory named "data" under tvm_test.
 
 2. Conduct quantization-aware training (QAT) to get quantized model and put it in the "data" directory. \
-Or download the quantized PyTorch model from https://drive.google.com/drive/folders/1gkhqaeklP0n8QS_72q0YOrbbEw2OF3Sz?usp=sharing into the newly created folder. The files can each be downloaded directly from the Google Drive into the Google Cloud VM using `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
+Or download the quantized PyTorch model from [model zoo](../model_zoo.md) into the newly created folder. 
+Optionally you can use `wget` by following the steps [here](https://medium.com/@acpanjan/download-google-drive-files-using-wget-3c2c025a8b99):
 * Press **Copy link** and paste it somewhere to view.
 * Run the following command, replacing FILEID with the id in the shared link and FILENAME with the name of the file.
 ~~~~
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
 ~~~~
-For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0/view?usp=sharing, then 1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0 is the FILEID, featuremaps.pth.tar is the FILENAME, and the command to download the file would be:
+For example if the sharing link is https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing, then 1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE is the FILEID, resnet18_uniform8.tar.gz is the FILENAME, and the command to download the file would be:
 ~~~~
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1h0kC7NfTsi0XaBmupMQqZVpDWEh-euE0" -O featuremaps.pth.tar && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE" -O resnet18_uniform8.tar.gz && rm -rf /tmp/cookies.txt
 ~~~~
 
 3. Convert the PyTorch parameters into TVM format by running the following command. Model directory contains the checkpoint.pth.tar file.
-* Without featuremaps, only weights and biases
+* Normal mode: (no comparison with featuremaps, only convert weights and biases)
 ~~~~
     python hawq_utils_resnet50.py --model-dir ./data
 ~~~~
-* With featuremap
+* Debug mode: (including comparison with PyTorch featuremaps)
 ~~~~
     python hawq_utils_resnet50.py --model-dir ./data --with-featuremap
 ~~~~
 
-4. There are two modes to run the single image TVM inference. To run debug mode, we need to store the image and featuremaps.
-* Normal mode: Run the inference and make predictions of the given image
+4. Run TVM inference on a single image. To run debug mode, we need to store the image and featuremaps.
+* Normal mode: (Run the inference and make predictions of the given image)
 ~~~~
     python test_resnet_inference.py --model-dir ./data
 ~~~~
-
-* Debug mode: Run the inference until the specific unit. The result will be compared with the PyTorch checkpoint and saved under "./data/tvm_result". The debug unit can be set to stage1_unit1_input, stage1_unit1_output ... fc_input, fc_output
+* Debug mode: (Run inference until the specific unit. The results will be compared with PyTorch featuremaps and saved under "./data/tvm_result". The debug unit can be set to stage1_unit1_input, stage1_unit1_output ... fc_input, fc_output)
 ~~~~
     python test_resnet_inference.py --model-dir ./data --debug-unit "stage2_unit2_input"
 ~~~~
 
-5. Run Imagenet accuracy test
+5. Run accuracy test on ImageNet
 ~~~~
     python test_resnet_accuracy_imagenet.py --model-dir ./data --val-dir PATH_TO_IMAGENET_VALIDATION_DATASET
 ~~~~
 
-6. Measure inference time (with uniform int4/int8 or custom mixed-precision bit config in bit_config.py)
+6. Measure inference time (with uniform int4/int8 or custom mixed-precision bit configs in bit_config.py).
 - With uniform int4 quantized model
 ~~~~
     python test_resnet_inference_time.py --num-layers 50 --batch-size 8 --data-layout "HWNC" --model-type "int4"
 ~~~~
-- Custom bit config in bit_config.py
+- With a custom bit config in bit_config.py
 ~~~~
     python test_resnet_inference_time.py --num-layers 50 --batch-size 8 --data-layout "HWNC" --bit-config BIT_CONFIG_NAME
 ~~~~
@@ -125,7 +125,7 @@ For example if the sharing link is https://drive.google.com/file/d/1h0kC7NfTsi0X
 ~~~~
     python test_resnet_inference_time.py --num-layers 50 --batch-size 8 --data-layout "HWNC" --model-type "int4" --debug
 ~~~~
-- Driver script to automatically optimize int4 casting for tvm auto-generated CUDA codes
+- Run driver script to automatically optimize int4 casting for tvm-generated CUDA codes
 ~~~~
     ./run_restnet_inference_time.sh
 ~~~~
