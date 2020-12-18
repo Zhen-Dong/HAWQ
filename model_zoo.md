@@ -58,7 +58,7 @@ To conduct quantization-aware training, run the following command with correct a
 Specifically, network architecture should be in the PyTorchCV form (resnet18, resnet50, etc), quantization scheme should correspond to names in the bit_config.py file (uniform8, size0.5, etc).
 ```
 export CUDA_VISIBLE_DEVICES=0
-python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fix-BN 1 --checkpoint-iter -1 --quant-scheme uniform8
+python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fix-BN --checkpoint-iter -1 --quant-scheme uniform8
 ```
 Notes:
 * 8-bit quantization-aware training typically converges fast, so the data-percentage attribute and the epoch attribute can be set to small values to only use a subset of training data with small number of epochs. For other cases with more aggressive quantization, the data-percentage should be set to 0.1 or 1, and the number of epochs should be adjusted (typical value is 90). Some examples for (quantization scheme : data-percentage): (size0.75 : 0.01); (bops0.75/latency0.75 : 0.1); (size0.5/bops0.5/latency0.5 : 1).
@@ -72,6 +72,6 @@ To evaluate the quantized model, use the following command and adjust the attrib
 ```
 # Directly running these commands will get 75.58% Top-1 Accuracy on ImageNet.
 export CUDA_VISIBLE_DEVICES=0
-python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 1 --fix-BN 0 --checkpoint-iter -1 --quant-scheme bops_0.5 --resume /path/to/resnet50_bops0.5/checkpoint.pth.tar --resume-quantize -e
+python quant_train.py -a resnet50 --epochs 90 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 1 --checkpoint-iter -1 --quant-scheme bops_0.5 --resume /path/to/resnet50_bops0.5/checkpoint.pth.tar --resume-quantize -e
 ```
 To resume quantization-aware training from the quantized checkpoint, remove the -e attribute.
