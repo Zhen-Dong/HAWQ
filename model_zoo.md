@@ -3,34 +3,34 @@
 ## ResNet18 on ImageNet 
 Model | Quantization Scheme | Model Size(MB) | BOPS(G) | Speed-Up | Accuracy(%) | Download
 ---|---|---|---|---|---|---
-`ResNet18` | Floating Points                 | 44.6    | 1858   | NA        | 71.47 | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
-`ResNet18` | W8A8                            | 11.1    | 116    | 1.00x     | 71.56 | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
-`ResNet18` | Mixed Precision High Size       | **9.9** | 103    | 1.03x     | 71.20 | [resnet18_size0.75](https://drive.google.com/file/d/1Fjm1Wruo773e3-jTIGahUWWQbmqGyMLO/view?usp=sharing)
-`ResNet18` | Mixed Precision Medium Size     | **7.9** | 98     | 1.06x     | 70.50 | [resnet18_size0.5](https://drive.google.com/file/d/1EGH76MRLckRtRXqWZHJ_I5DW5UQ-C8iA/view?usp=sharing)
-`ResNet18` | Mixed Precision Low Size        | **7.3** | 95     | 1.08x     | 70.01 | [resnet18_size0.25](https://drive.google.com/file/d/1Eq9tmF8XlxOQGNMOuvc5rTPV0N4Ov-4C/view?usp=sharing)
-`ResNet18` | Mixed Precision High BOPS       | 8.7     | **92** | 1.12x     | 70.40 | [resnet18_bops0.75](https://drive.google.com/file/d/1F-pcK-AMCNcPAOydmhJN5aiDGGaEk-q7/view?usp=sharing)
-`ResNet18` | Mixed Precision Medium BOPS     | 6.7     | **72** | 1.21x     | 70.22 | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
-`ResNet18` | Mixed Precision Low BOPS        | 6.1     | **54** | 1.35x     | 68.72 | [resnet18_bops0.25](https://drive.google.com/file/d/1G9UgvLB3KuDyqNj4xV7DFiHjfXtULPJI/view?usp=sharing)
-`ResNet18` | Mixed Precision High Latency    | 8.7     | 92     | **1.12x** | 70.40 | [resnet18_latency0.75](https://drive.google.com/file/d/1FcDVQT-p314lDq-URbHbLCSkGnWrd_vT/view?usp=sharing)
-`ResNet18` | Mixed Precision Medium Latency  | 7.2     | 76     | **1.19x** | 70.34 | [resnet18_latency0.5](https://drive.google.com/file/d/1EfpPjgx-q5IS9rDP1irrdQtMvBodkDei/view?usp=sharing)
-`ResNet18` | Mixed Precision Low Latency     | 6.1     | 54     | **1.35x** | 68.56 | [resnet18_latency0.25](https://drive.google.com/file/d/1FwC7Sjp9lFW6dLdnyb9O4Re7OLkUpkPy/view?usp=sharing)
-`ResNet18` | W4A4                            | 5.8     | 34     | 1.48x     | 68.45 | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
+`ResNet18` | Floating Points                 | 44.6    | 1858   | 1.00x     | 71.47 | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
+`ResNet18` | W8A8                            | 11.1    | 116    | 3.00x     | 71.56 | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
+`ResNet18` | Mixed Precision High Size       | **9.9** | 103    | 3.09x     | 71.20 | [resnet18_size0.75](https://drive.google.com/file/d/1Fjm1Wruo773e3-jTIGahUWWQbmqGyMLO/view?usp=sharing)
+`ResNet18` | Mixed Precision Medium Size     | **7.9** | 98     | 3.18x     | 70.50 | [resnet18_size0.5](https://drive.google.com/file/d/1EGH76MRLckRtRXqWZHJ_I5DW5UQ-C8iA/view?usp=sharing)
+`ResNet18` | Mixed Precision Low Size        | **7.3** | 95     | 3.24x     | 70.01 | [resnet18_size0.25](https://drive.google.com/file/d/1Eq9tmF8XlxOQGNMOuvc5rTPV0N4Ov-4C/view?usp=sharing)
+`ResNet18` | Mixed Precision High BOPS       | 8.7     | **92** | 3.36x     | 70.40 | [resnet18_bops0.75](https://drive.google.com/file/d/1F-pcK-AMCNcPAOydmhJN5aiDGGaEk-q7/view?usp=sharing)
+`ResNet18` | Mixed Precision Medium BOPS     | 6.7     | **72** | 3.63x     | 70.22 | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
+`ResNet18` | Mixed Precision Low BOPS        | 6.1     | **54** | 4.05x     | 68.72 | [resnet18_bops0.25](https://drive.google.com/file/d/1G9UgvLB3KuDyqNj4xV7DFiHjfXtULPJI/view?usp=sharing)
+`ResNet18` | Mixed Precision High Latency    | 8.7     | 92     | **3.36x** | 70.40 | [resnet18_latency0.75](https://drive.google.com/file/d/1FcDVQT-p314lDq-URbHbLCSkGnWrd_vT/view?usp=sharing)
+`ResNet18` | Mixed Precision Medium Latency  | 7.2     | 76     | **3.57x** | 70.34 | [resnet18_latency0.5](https://drive.google.com/file/d/1EfpPjgx-q5IS9rDP1irrdQtMvBodkDei/view?usp=sharing)
+`ResNet18` | Mixed Precision Low Latency     | 6.1     | 54     | **4.05x** | 68.56 | [resnet18_latency0.25](https://drive.google.com/file/d/1FwC7Sjp9lFW6dLdnyb9O4Re7OLkUpkPy/view?usp=sharing)
+`ResNet18` | W4A4                            | 5.8     | 34     | 4.44x     | 68.45 | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
 
 ## ResNet50 on ImageNet
 Model | Quantization Scheme | Model Size(MB) | BOPS(G) | Speed-Up | Accuracy(%) | Download
 ---|---|---|---|---|---|---
-`ResNet50` | Floating Points                 | 97.8     | 3951     | NA        | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
-`ResNet50` | W8A8                            | 24.5     | 247      | 1.00x     | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
-`ResNet50` | Mixed Precision High Size       | **21.3** | 226      | 1.09x     | 77.38 | [resnet50_size0.75](https://drive.google.com/file/d/1GtYgWFQrWfmn-23pFrZlxmBtuDCRG5Zs/view?usp=sharing)
-`ResNet50` | Mixed Precision Medium Size     | **19.0** | 197      | 1.13x     | 75.95 | [resnet50_size0.5](https://drive.google.com/file/d/1DnnRL9Q9SJ6BA5M98zGxcKrrAKClDdfJ/view?usp=sharing)
-`ResNet50` | Mixed Precision Low Size        | **16.0** | 168      | 1.18x     | 74.89 | [resnet50_size0.25](https://drive.google.com/file/d/1H_rLcaOobHCASSxLD5F6ho5rKNvBqAOo/view?usp=sharing)
-`ResNet50` | Mixed Precision High BOPS       | 22.0     | **197**  | 1.16x     | 76.10 | [resnet50_bops0.75](https://drive.google.com/file/d/1H5947bedQ1rCGzdKpSCJjIxysJUBznOE/view?usp=sharing)
-`ResNet50` | Mixed Precision Medium BOPS     | 18.7     | **154**  | 1.23x     | 75.39 | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
-`ResNet50` | Mixed Precision Low BOPS        | 16.7     | **110**  | 1.30x     | 74.45 | [resnet50_bops0.25](https://drive.google.com/file/d/1G_JQJgGTDYQN5atmcyjDsJZV5zkH8GWw/view?usp=sharing)
-`ResNet50` | Mixed Precision High Latency    | 22.3     | 199      | **1.13x** | 76.63 | [resnet50_latency0.75](https://drive.google.com/file/d/1HBQhrTplhOHft43WEifaq35dfUftP5tJ/view?usp=sharing)
-`ResNet50` | Mixed Precision Medium Latency  | 18.5     | 155      | **1.21x** | 74.95 | [resnet50_latency0.5](https://drive.google.com/file/d/1GbviN74Z806jyDusohusEjgKuqIyAc5s/view?usp=sharing)
-`ResNet50` | Mixed Precision Low Latency     | 16.5     | 114      | **1.28x** | 74.26 | [resnet50_latency0.25](https://drive.google.com/file/d/1HuMaFhL1GV3XiYt9fLncZf6QruL7eGif/view?usp=sharing)
-`ResNet50` | W4A4                            | 13.1     | 67       | 1.45x     | 74.24 | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
+`ResNet50` | Floating Points                 | 97.8     | 3951     | 1.00x        | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
+`ResNet50` | W8A8                            | 24.5     | 247      | 3.10x     | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
+`ResNet50` | Mixed Precision High Size       | **21.3** | 226      | 3.38x     | 77.38 | [resnet50_size0.75](https://drive.google.com/file/d/1GtYgWFQrWfmn-23pFrZlxmBtuDCRG5Zs/view?usp=sharing)
+`ResNet50` | Mixed Precision Medium Size     | **19.0** | 197      | 3.50x     | 75.95 | [resnet50_size0.5](https://drive.google.com/file/d/1DnnRL9Q9SJ6BA5M98zGxcKrrAKClDdfJ/view?usp=sharing)
+`ResNet50` | Mixed Precision Low Size        | **16.0** | 168      | 3.66x     | 74.89 | [resnet50_size0.25](https://drive.google.com/file/d/1H_rLcaOobHCASSxLD5F6ho5rKNvBqAOo/view?usp=sharing)
+`ResNet50` | Mixed Precision High BOPS       | 22.0     | **197**  | 3.60x     | 76.10 | [resnet50_bops0.75](https://drive.google.com/file/d/1H5947bedQ1rCGzdKpSCJjIxysJUBznOE/view?usp=sharing)
+`ResNet50` | Mixed Precision Medium BOPS     | 18.7     | **154**  | 3.81x     | 75.39 | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
+`ResNet50` | Mixed Precision Low BOPS        | 16.7     | **110**  | 4.03x     | 74.45 | [resnet50_bops0.25](https://drive.google.com/file/d/1G_JQJgGTDYQN5atmcyjDsJZV5zkH8GWw/view?usp=sharing)
+`ResNet50` | Mixed Precision High Latency    | 22.3     | 199      | **3.50x** | 76.63 | [resnet50_latency0.75](https://drive.google.com/file/d/1HBQhrTplhOHft43WEifaq35dfUftP5tJ/view?usp=sharing)
+`ResNet50` | Mixed Precision Medium Latency  | 18.5     | 155      | **3.75x** | 74.95 | [resnet50_latency0.5](https://drive.google.com/file/d/1GbviN74Z806jyDusohusEjgKuqIyAc5s/view?usp=sharing)
+`ResNet50` | Mixed Precision Low Latency     | 16.5     | 114      | **3.97x** | 74.26 | [resnet50_latency0.25](https://drive.google.com/file/d/1HuMaFhL1GV3XiYt9fLncZf6QruL7eGif/view?usp=sharing)
+`ResNet50` | W4A4                            | 13.1     | 67       | 4.50x     | 74.24 | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
 ## ResNet101 on ImageNet
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
