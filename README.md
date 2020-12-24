@@ -43,18 +43,18 @@ The commands for other quantization schemes and for other networks are shown in 
 ### ResNet18 on ImageNet 
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed (batch=8, ms) | Download
 ---|---|---|---|---|---|---
-`ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | 9.68 (1.0x) | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
-`ResNet18` | W8A8            | 11.1 | 116  | 71.56 | 3.25 (3.0x) | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
-`ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | 2.69 (3.6x) | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
-`ResNet18` | W4A4            | 5.8  | 34   | 68.45 | 2.2  (4.4x) | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
+`ResNet18` | Floating Points | 44.6 | 1858 | 71.47 | 9.7 (1.0x) | [resnet18_baseline](https://drive.google.com/file/d/1C7is-QOiSlLXKoPuKzKNxb0w-ixqoOQE/view?usp=sharing)
+`ResNet18` | W8A8            | 11.1 | 116  | 71.56 | 3.3 (3.0x) | [resnet18_uniform8](https://drive.google.com/file/d/1CLAd3LhiRVYwiBZRuUJgrzrrPFfLvfWG/view?usp=sharing)
+`ResNet18` | Mixed Precision | 6.7  | 72   | 70.22 | 2.7 (3.6x) | [resnet18_bops0.5](https://drive.google.com/file/d/1DbDXYdulvvb9YOG1fRSrCVPvry_Reu8z/view?usp=sharing)
+`ResNet18` | W4A4            | 5.8  | 34   | 68.45 | 2.2 (4.4x) | [resnet18_uniform4](https://drive.google.com/file/d/1D4DPcW2s9QmSnKzUgcjH-2eYO8zpDRIL/view?usp=sharing)
 
 ### ResNet50 on ImageNet
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed (batch=8, ms) | Download
 ---|---|---|---|---|---|---
-`ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | 26.15 (1.0x) | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
-`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | 8.48 (3.1x)  | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
-`ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | 6.87 (3.8x)  | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
-`ResNet50` | W4A4            | 13.1 | 67   | 74.24 | 5.84 (4.5x)  | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
+`ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | 26.2 (1.0x) | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
+`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | 8.5 (3.1x)  | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
+`ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | 6.9 (3.8x)  | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
+`ResNet50` | W4A4            | 13.1 | 67   | 74.24 | 5.8 (4.5x)  | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
 More results for different quantization schemes and different models (also the corresponding commands) are available in the [model zoo](model_zoo.md).  \
 To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md).
