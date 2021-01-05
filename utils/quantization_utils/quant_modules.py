@@ -150,6 +150,8 @@ class QuantAct(Module):
         Whether the module is in fixed mode or not.
     act_percentile : float, default 0
         The percentile to setup quantization range, 0 means no use of percentile, 99.9 means to cut off 0.1%.
+    fixed_point_quantization : bool, default False
+        Whether to skip deployment-oriented operations and use fixed-point rather than integer-only quantization.
     """
 
     def __init__(self,
@@ -159,7 +161,8 @@ class QuantAct(Module):
                  running_stat=True,
                  quant_mode="symmetric",
                  fix_flag=False,
-                 act_percentile=0):
+                 act_percentile=0,
+                 fixed_point_quantization=False):
         super(QuantAct, self).__init__()
 
         self.activation_bit = activation_bit
@@ -169,6 +172,7 @@ class QuantAct(Module):
         self.quant_mode = quant_mode
         self.fix_flag = fix_flag
         self.act_percentile = act_percentile
+        self.fixed_point_quantization = fixed_point_quantization
 
         self.register_buffer('x_min', torch.zeros(1))
         self.register_buffer('x_max', torch.zeros(1))
@@ -264,8 +268,9 @@ class QuantAct(Module):
             else:
                 self.act_scaling_factor, self.act_zero_point = asymmetric_linear_quantization_params(
                     self.activation_bit, self.x_min, self.x_max, True)
-            if pre_act_scaling_factor is None:
-                # this is for the case of input quantization
+            if (pre_act_scaling_factor is None) or (self.fixed_point_quantization == True):
+                # this is for the case of input quantization,
+                # or the case using fixed-point rather than integer-only quantization
                 quant_act_int = self.act_function(x, self.activation_bit, self.act_scaling_factor)
             elif type(pre_act_scaling_factor) is list:
                 # this is for the case of multi-branch quantization

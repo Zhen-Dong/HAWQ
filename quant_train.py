@@ -146,6 +146,11 @@ parser.add_argument('--temperature',
                     type=float,
                     default=6,
                     help='how large is the temperature factor for distillation')
+parser.add_argument('--fixed-point-quantization',
+                    action='store_true',
+                    help='whether to skip deployment-oriented operations and '
+                         'use fixed-point rather than integer-only quantization')
+
 best_acc1 = 0
 quantize_arch_dict = {'resnet50': q_resnet50, 'resnet50b': q_resnet50,
                       'resnet18': q_resnet18, 'resnet101': q_resnet101,
@@ -275,6 +280,7 @@ def main_worker(gpu, ngpus_per_node, args):
             setattr(m, 'training_BN_mode', args.fix_BN)
             setattr(m, 'checkpoint_iter_threshold', args.checkpoint_iter)
             setattr(m, 'save_path', args.save_path)
+            setattr(m, 'fixed_point_quantization', args.fixed_point_quantization)
 
             if type(bit_config[name]) is tuple:
                 bitwidth = bit_config[name][0]
