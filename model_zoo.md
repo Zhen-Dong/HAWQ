@@ -60,8 +60,9 @@ Specifically, network architecture should be in the PyTorchCV form (resnet18, re
 export CUDA_VISIBLE_DEVICES=0
 python quant_train.py -a resnet50 --epochs 1 --lr 0.0001 --batch-size 128 --data /path/to/imagenet/ --pretrained --save-path /path/to/checkpoints/ --act-range-momentum=0.99 --wd 1e-4 --data-percentage 0.0001 --fix-BN --checkpoint-iter -1 --quant-scheme uniform8
 ```
-Notes:
+Important Notes:
 * 8-bit quantization-aware training typically converges fast, so the data-percentage attribute and the epoch attribute can be set to small values to only use a subset of training data with small number of epochs. For other cases with more aggressive quantization, the data-percentage should be set to 0.1 or 1, and the number of epochs should be adjusted (typical value is 90). Some examples for (quantization scheme : data-percentage): (size0.75 : 0.01); (bops0.75/latency0.75 : 0.1); (size0.5/bops0.5/latency0.5/uniform4 : 1).
+* In order to exactly match TVM inference, the quantized model is trained and tested on 1 GPU. DataParallel or DistributedDataParallel will lead to different statistics on different GPUs, which may impact (or degrade) the BN folding and static quantization (therefore is not recommended for the current codebase).
 * The activation percentile function can be helpful for some scenarios, but it is time-consuming since the PyTorch torch.topk function is relatively slow.
 * The fix-BN attribute is for training, BN will always be folded and fixed during validation. This attribute is more important for ultra-low precision such as 2-bit, and is optional for 4-bit or 8-bit quantization.
 * This codebase is specialized for easy deployment on hardware, meaning sometimes it sacrifices accuracy for simpler operations. It uses standard symmetric channel-wise linear quantization for weights, static asymmetric layer-wise linear quantization for activations (except for 8-bit, the hardware support only allow symmetric quantization for 8-bit). Set --fixed-point-quantization attribute can skip some deployment-oriented operations to ease the fine-tuning process, but this will make the final TVM fail to 100% exactly match PyTorch.

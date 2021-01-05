@@ -56,7 +56,7 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed 
 `ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | 6.9 (3.8x)  | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
 `ResNet50` | W4A4            | 13.1 | 67   | 74.24 | 5.8 (4.5x)  | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
-More results for different quantization schemes and different models (also the corresponding commands) are available in the [model zoo](model_zoo.md).  \
+More results for different quantization schemes and different models (also the corresponding commands and important notes) are available in the [model zoo](model_zoo.md).  \
 To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md).
 
 ## Related Works
