@@ -12,7 +12,7 @@ sys.path.append('..')
 import mixed_precision_models.quantized_resnet_v1 as quantized_resnet_v1
 import mixed_precision_models.quantized_resnet_v1_5 as quantized_resnet_v1_5
 from mixed_precision_models.layers import QConfig, QuantizeContext
-import hawq_utils
+import hawq_utils_resnet50
 
 import numpy as np
 import logging
@@ -111,7 +111,7 @@ elif num_layers == 50:
 
 if args.bit_config is not None:
     import bit_config
-    hawq_utils.load_qconfig_from_bit_config(stage, units, bit_config.bit_config_dict[args.bit_config], bottleneck)
+    hawq_utils_resnet50.load_qconfig_from_bit_config(stage, units, bit_config.bit_config_dict[args.bit_config], bottleneck)
 else:
     if model_type == 'int4':
         int4_default_qconfig = QConfig(from_dtype='int32', from_scale=65.0, from_zero_point=0.0, input_dtype='uint4', input_scale=8.0, input_zero_point=0.0,
