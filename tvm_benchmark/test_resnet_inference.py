@@ -20,7 +20,7 @@ import re
 import mixed_precision_models.quantized_resnet_v1 as quantized_resnet_v1
 from mixed_precision_models.layers import QConfig, QuantizeContext
 
-import hawq_utils
+import hawq_utils_resnet50
 
 import logging
 logging.basicConfig(level=logging.CRITICAL)
@@ -63,7 +63,7 @@ else:
 
 weights = np.load(os.path.join(args.model_dir, "weights.npy"), allow_pickle=True)[()]
 bias = np.load(os.path.join(args.model_dir, "bias.npy"), allow_pickle=True)[()]
-hawq_utils.load_qconfig("uint4", "int4", num_stages, units, file_name=os.path.join(args.model_dir, "quantized_checkpoint.pth.tar"))
+hawq_utils_resnet50.load_qconfig("uint4", "int4", num_stages, units, file_name=os.path.join(args.model_dir, "quantized_checkpoint.pth.tar"))
 
 input_image = np.load(os.path.join(args.model_dir, "input_image_batch_1.npy"))
 input_image = input_image / QuantizeContext.qconfig_dict["conv0_qconfig"].input_scale
@@ -102,7 +102,7 @@ func, _ = quantized_resnet_v1.get_workload(batch_size=batch_size,
 
 
 # Download ImageNet categories
-categ_url = "https://github.com/uwsaml/web-data/raw/master/vta/models/"
+categ_url = "https://github.com/uwsaml/web-data/raw/main/vta/models/"
 categ_fn = "synset.txt"
 download.download(join(categ_url, categ_fn), categ_fn)
 synset = eval(open(categ_fn).read())
@@ -169,7 +169,7 @@ with autotvm.apply_history_best(log_filename):
                 np.save(os.path.join(args.model_dir, "tvm_result/%s_output_int32.npy" % unit_str), actual_result[0])
                 golden_result = np.load(os.path.join(args.model_dir, "pytorch_result/%s_output_float32.npy" % unit_str))
             elif args.debug_unit == unit_str + "_input":
-                actual_result = hawq_utils.unpack_int4_to_int32(out)
+                actual_result = hawq_utils_resnet50.unpack_int4_to_int32(out)
                 np.save(os.path.join(args.model_dir, "tvm_result/%s_input_int4.npy" % unit_str), actual_result[0])
                 golden_result = np.load(os.path.join(args.model_dir, "pytorch_result/%s_input_int4.npy" % unit_str)).astype("int32")
             else:
