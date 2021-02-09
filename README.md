@@ -62,8 +62,8 @@ Checkpoints in [model zoo](model_zoo.md) are saved in floating point precision. 
 
 ## Related Works
   - [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)
-  - [HAWQ-V2: Hessian Aware trace-Weighted Quantization of Neural Networks (NeurIPS 2020)](https://arxiv.org/abs/1911.03852)
-  - [HAWQ: Hessian AWare Quantization of Neural Networks With Mixed-Precision (ICCV 2019)](https://openaccess.thecvf.com/content_ICCV_2019/html/Dong_HAWQ_Hessian_AWare_Quantization_of_Neural_Networks_With_Mixed-Precision_ICCV_2019_paper.html)
+  - [HAWQ-V2: Hessian Aware trace-Weighted Quantization of Neural Networks (NeurIPS 2020)](https://proceedings.neurips.cc//paper/2020/file/d77c703536718b95308130ff2e5cf9ee-Paper.pdf)
+  - [HAWQ: Hessian AWare Quantization of Neural Networks with Mixed-Precision (ICCV 2019)](https://openaccess.thecvf.com/content_ICCV_2019/html/Dong_HAWQ_Hessian_AWare_Quantization_of_Neural_Networks_With_Mixed-Precision_ICCV_2019_paper.html)
 
 
 ## License
