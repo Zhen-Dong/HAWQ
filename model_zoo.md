@@ -20,7 +20,7 @@ Model | Quantization Scheme | Model Size(MB) | BOPS(G) | Speed-Up | Accuracy(%) 
 Model | Quantization Scheme | Model Size(MB) | BOPS(G) | Speed-Up | Accuracy(%) | Download
 ---|---|---|---|---|---|---
 `ResNet50` | Floating Points                 | 97.8     | 3951     | 1.00x        | 77.72 | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
-`ResNet50` | W8A8                            | 24.5     | 247      | 3.10x     | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
+`ResNet50` | W8A8                            | 24.5     | 247      | 3.10x     | 77.58 | [resnet50_uniform8](https://drive.google.com/file/d/1Ldo51ZPx6_2Eq60JgbL6hdPdQf5WbRf9/view?usp=sharing)
 `ResNet50` | Mixed Precision High Size       | **21.3** | 226      | 3.38x     | 77.38 | [resnet50_size0.75](https://drive.google.com/file/d/1GtYgWFQrWfmn-23pFrZlxmBtuDCRG5Zs/view?usp=sharing)
 `ResNet50` | Mixed Precision Medium Size     | **19.0** | 197      | 3.50x     | 75.95 | [resnet50_size0.5](https://drive.google.com/file/d/1DnnRL9Q9SJ6BA5M98zGxcKrrAKClDdfJ/view?usp=sharing)
 `ResNet50` | Mixed Precision Low Size        | **16.0** | 168      | 3.66x     | 74.89 | [resnet50_size0.25](https://drive.google.com/file/d/1H_rLcaOobHCASSxLD5F6ho5rKNvBqAOo/view?usp=sharing)
@@ -37,6 +37,11 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
 ---|---|---|---|---|---
 `ResNet101` | Floating Points | 170.0 | 7780 | 78.10 | [resnet101_baseline](https://drive.google.com/file/d/1GDliS9_HdQ75eH2G1bCivfQL4FTI4euF/view?usp=sharing)
 `ResNet101b` | Floating Points | 170.0 | 8018 | 79.41 | [resnet101b_baseline](https://drive.google.com/file/d/1GPBBpi3wAko4wHWt8ZBOJj7RALW1_K1p/view?usp=sharing)
+
+## InceptionV3 on ImageNet
+Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Download
+---|---|---|---|---|---
+`InceptionV3` | Floating Points | 90.9 | 5850 | 78.88 | [inceptionv3_baseline](https://drive.google.com/file/d/1LcfaPrYCpAxnuaobXwD5MDswpd_UqfDk/view?usp=sharing)
 
 Baseline models are from [PyTorchCV](https://pypi.org/project/pytorchcv/).
 
