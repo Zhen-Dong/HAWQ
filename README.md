@@ -57,7 +57,8 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed 
 `ResNet50` | W4A4            | 13.1 | 67   | 74.24 | 5.8 (4.5x)  | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
 More results for different quantization schemes and different models (also the corresponding commands and important notes) are available in the [model zoo](model_zoo.md).  \
-To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md).
+To download the quantized models through wget, please refer to a simple command in [model zoo](model_zoo.md). \
+Checkpoints in [model zoo](model_zoo.md) are saved in floating point precision. To shrink the memory size, [BitPack](https://github.com/Zhen-Dong/BitPack) can be applied on [weight_integer](https://github.com/Zhen-Dong/HAWQ/blob/main/quant_train.py#L667) tensors, or directly on quantized_checkpoint.pth.tar file.
 
 ## Related Works
   - [HAWQ-V3: Dyadic Neural Network Quantization](https://arxiv.org/abs/2011.10680)
@@ -66,5 +67,4 @@ To download the quantized models through wget, please refer to a simple command 
 
 
 ## License
-
 HAWQ is released under the [MIT license](LICENSE).
