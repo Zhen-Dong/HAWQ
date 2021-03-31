@@ -52,7 +52,7 @@ Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed 
 Model | Quantization | Model Size(MB) | BOPS(G) | Accuracy(%) | Inference Speed (batch=8, ms) | Download
 ---|---|---|---|---|---|---
 `ResNet50` | Floating Points | 97.8 | 3951 | 77.72 | 26.2 (1.0x) | [resnet50_baseline](https://drive.google.com/file/d/1CE4b05gwMzDqcdpwHLFC2BM0841qKJp8/view?usp=sharing)
-`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | 8.5 (3.1x)  | [resnet50_uniform8](https://drive.google.com/file/d/1CID7aId-SL8edGx8j5-Lsup_GqW3OX7-/view?usp=sharing)
+`ResNet50` | W8A8            | 24.5 | 247  | 77.58 | 8.5 (3.1x)  | [resnet50_uniform8](https://drive.google.com/file/d/1Ldo51ZPx6_2Eq60JgbL6hdPdQf5WbRf9/view?usp=sharing)
 `ResNet50` | Mixed Precision | 18.7 | 154  | 75.39 | 6.9 (3.8x)  | [resnet50_bops0.5](https://drive.google.com/file/d/1DNUkyavD10saZw9_7TzJhEy0NFPhSVZr/view?usp=sharing)
 `ResNet50` | W4A4            | 13.1 | 67   | 74.24 | 5.8 (4.5x)  | [resnet50_uniform4](https://drive.google.com/file/d/1DDis-8C-EupCRj-ExH58ldSv-tG2RXyf/view?usp=sharing)
 
