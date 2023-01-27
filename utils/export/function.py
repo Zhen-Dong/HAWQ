@@ -79,24 +79,37 @@ class ConvFunc(autograd.Function):
 
     @staticmethod
     def forward(
-        ctx, x, quant_input, layer, dilations, group, kernel_shape, pads, strides
+        ctx, x, quant_input, bias, layer, dilations, group, kernel_shape, pads, strides
     ):
         return layer.conv(x)
 
     @staticmethod
     def symbolic(
-        g, x, quant_input, layer, dilations, group, kernel_shape, pads, strides
+        g, x, quant_input, bias, layer, dilations, group, kernel_shape, pads, strides
     ):
-        return g.op(
-            "Conv",
-            x,
-            quant_input,
-            dilations_i=dilations,
-            group_i=group,
-            kernel_shape_i=kernel_shape,
-            pads_i=pads,
-            strides_i=strides,
-        )
+        if(bias is None):
+            return g.op(
+                "Conv",
+                x,
+                quant_input,
+                dilations_i=dilations,
+                group_i=group,
+                kernel_shape_i=kernel_shape,
+                pads_i=pads,
+                strides_i=strides,
+            )
+        else:
+            return g.op(
+                "Conv",
+                x,
+                quant_input,
+                bias,
+                dilations_i=dilations,
+                group_i=group,
+                kernel_shape_i=kernel_shape,
+                pads_i=pads,
+                strides_i=strides,
+            )
 
 
 class RoundFunc(autograd.Function):
