@@ -67,4 +67,6 @@ Checkpoints in [model zoo](model_zoo.md) are saved in floating point precision. 
 
 
 ## License
+THIS SOFTWARE WAS DEPOSITED IN THE BAIR OPEN RESEARCH COMMONS REPOSITORY ON FEB 1, 2023.
+
 HAWQ is released under the [MIT license](LICENSE).
