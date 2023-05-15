@@ -65,7 +65,7 @@ class Q_LinearBottleneck(nn.Module):
         if self.use_exp_conv:
             x, weight_scaling_factor = self.conv1(x, act_scaling_factor)
             x = self.activatition_func(x)
-            x, self.act_scaling_factor = self.quant_act1(x, act_scaling_factor, weight_scaling_factor, None, None)
+            x, act_scaling_factor = self.quant_act1(x, act_scaling_factor, weight_scaling_factor, None, None)
 
             x, weight_scaling_factor = self.conv2(x, act_scaling_factor)
             x = self.activatition_func(x)
